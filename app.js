@@ -93,10 +93,12 @@ const state = {
   progressLabel: "Choose a target output and add a file or direct link.",
   query: "",
   result: null,
+  screen: "browse",
 };
 
 const fileInput = document.getElementById("file-input");
 const searchInput = document.getElementById("search-input");
+const searchWrap = document.querySelector(".search-wrap");
 const sourceTabs = document.getElementById("source-tabs");
 const toast = document.getElementById("toast");
 const workspaceShell = document.getElementById("workspace-shell");
@@ -131,6 +133,7 @@ function bindEvents() {
       }
 
       state.activeSource = nextSource;
+      state.screen = "browse";
       state.query = "";
       searchInput.value = "";
       clearInputs();
@@ -238,6 +241,9 @@ function render() {
   renderSourceTabs();
   renderWorkspace();
   searchInput.placeholder = `Search ${state.activeSource} outputs`;
+  if (searchWrap) {
+    searchWrap.classList.toggle("is-hidden", state.screen === "detail");
+  }
 }
 
 function renderSourceTabs() {
@@ -284,10 +290,12 @@ function renderWorkspace() {
   const sourceEntries = getSourceConversions();
   const active = getActiveConversion();
   const sourceTheme = getSourceTheme(state.activeSource);
+  const showDetailScreen = state.screen === "detail" && active;
 
   workspaceShell.innerHTML = "";
 
   if (!sourceEntries.length) {
+    state.screen = "browse";
     const empty = document.createElement("div");
     empty.className = "empty-state";
     empty.textContent = state.loadError || "No conversions available for this source tab.";
@@ -295,6 +303,15 @@ function renderWorkspace() {
     return;
   }
 
+  if (!showDetailScreen) {
+    renderBrowseScreen({ sourceTheme, sourceEntries, visible });
+    return;
+  }
+
+  renderDetailScreen({ active, sourceTheme });
+}
+
+function renderBrowseScreen({ sourceTheme, sourceEntries, visible }) {
   const hero = document.createElement("section");
   hero.className = "workspace-hero";
   hero.style.setProperty("--hero-border", sourceTheme.border);
@@ -359,12 +376,7 @@ function renderWorkspace() {
       `rgba(${targetTheme.rgb.r}, ${targetTheme.rgb.g}, ${targetTheme.rgb.b}, ${isActive ? "0.16" : "0.09"})`
     );
     button.addEventListener("click", () => {
-      if (state.activeKey !== entry.key) {
-        state.activeKey = entry.key;
-        clearResult();
-        resetProgress();
-        render();
-      }
+      openConversionScreen(entry.key);
     });
 
     const label = document.createElement("span");
@@ -385,10 +397,22 @@ function renderWorkspace() {
 
   targetsSection.appendChild(targetGrid);
   workspaceShell.appendChild(targetsSection);
+}
 
-  if (!active) {
-    return;
-  }
+function renderDetailScreen({ active, sourceTheme }) {
+  const detailScreen = document.createElement("div");
+  detailScreen.className = "detail-screen";
+
+  const backButton = document.createElement("button");
+  backButton.type = "button";
+  backButton.className = "back-button";
+  backButton.textContent = `Back to ${state.activeSource} outputs`;
+  backButton.addEventListener("click", () => {
+    state.screen = "browse";
+    render();
+  });
+
+  detailScreen.appendChild(backButton);
 
   const workspace = document.createElement("section");
   workspace.className = "converter-app";
@@ -574,7 +598,18 @@ function renderWorkspace() {
     workspace.appendChild(resultPanel);
   }
 
-  workspaceShell.appendChild(workspace);
+  detailScreen.appendChild(workspace);
+  workspaceShell.appendChild(detailScreen);
+}
+
+function openConversionScreen(key) {
+  if (state.activeKey !== key) {
+    state.activeKey = key;
+    clearResult();
+    resetProgress();
+  }
+  state.screen = "detail";
+  render();
 }
 
 async function convertActive() {
