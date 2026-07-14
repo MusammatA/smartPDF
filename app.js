@@ -1,4 +1,5 @@
 const state = {
+  activeSource: "All",
   apiAvailable: false,
   loadError: "",
   conversions: [],
@@ -113,9 +114,11 @@ const FALLBACK_COLORS = [
   "#7c6cf6",
 ];
 
+const ALL_SOURCES = "All";
 const conversionGrid = document.getElementById("conversion-grid");
 const fileInput = document.getElementById("file-input");
 const searchInput = document.getElementById("search-input");
+const sourceTabs = document.getElementById("source-tabs");
 const toast = document.getElementById("toast");
 const appBaseUrl = new URL(".", window.location.href);
 
@@ -161,12 +164,22 @@ async function fetchCatalog(path) {
 function bindEvents() {
   searchInput.addEventListener("input", (event) => {
     state.query = normalizeSearchText(event.target.value);
-    if (!getVisibleConversions().some((entry) => entry.key === state.activeKey)) {
-      state.activeKey = null;
-      clearSelectedFile();
-    }
+    syncActiveSelection();
     render();
   });
+
+  if (sourceTabs) {
+    sourceTabs.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-source-filter]");
+      if (!button) {
+        return;
+      }
+
+      state.activeSource = button.dataset.sourceFilter || ALL_SOURCES;
+      syncActiveSelection();
+      render();
+    });
+  }
 
   fileInput.addEventListener("change", (event) => {
     const [file] = event.target.files;
@@ -186,7 +199,9 @@ function normalizeSearchText(value) {
 function getVisibleConversions() {
   return state.conversions.filter((entry) => {
     const haystack = normalizeSearchText(`${entry.label} ${entry.category} ${entry.note} ${entry.status}`);
-    return !state.query || haystack.includes(state.query);
+    const matchesQuery = !state.query || haystack.includes(state.query);
+    const matchesSource = state.activeSource === ALL_SOURCES || entry.source === state.activeSource;
+    return matchesQuery && matchesSource;
   });
 }
 
@@ -194,13 +209,47 @@ function getActiveConversion() {
   return state.conversions.find((entry) => entry.key === state.activeKey) || null;
 }
 
+function getSourceGroups() {
+  const counts = new Map();
+
+  state.conversions.forEach((entry) => {
+    counts.set(entry.source, (counts.get(entry.source) || 0) + 1);
+  });
+
+  const sources = [...counts.keys()].sort((left, right) => {
+    if (left === "PDF") {
+      return -1;
+    }
+    if (right === "PDF") {
+      return 1;
+    }
+    return left.localeCompare(right);
+  });
+
+  return [
+    { count: state.conversions.length, source: ALL_SOURCES },
+    ...sources.map((source) => ({
+      count: counts.get(source) || 0,
+      source,
+    })),
+  ];
+}
+
 function clearSelectedFile() {
   state.file = null;
   fileInput.value = "";
 }
 
+function syncActiveSelection() {
+  if (state.activeKey && !getVisibleConversions().some((entry) => entry.key === state.activeKey)) {
+    state.activeKey = null;
+    clearSelectedFile();
+  }
+}
+
 function render() {
   const visible = getVisibleConversions();
+  renderSourceTabs();
   conversionGrid.innerHTML = "";
 
   if (!visible.length) {
@@ -293,6 +342,58 @@ function render() {
   });
 }
 
+function renderSourceTabs() {
+  if (!sourceTabs) {
+    return;
+  }
+
+  sourceTabs.innerHTML = "";
+
+  getSourceGroups().forEach(({ source, count }) => {
+    const tab = document.createElement("button");
+    const theme = getSourceTabTheme(source);
+    const isActive = source === state.activeSource;
+
+    tab.type = "button";
+    tab.className = `source-tab${isActive ? " active" : ""}`;
+    tab.dataset.sourceFilter = source;
+    tab.style.setProperty("--tab-accent", theme.accent);
+    tab.style.setProperty("--tab-ink", theme.ink);
+    tab.style.setProperty("--tab-shadow", theme.shadow);
+    tab.style.setProperty("--tab-tint", theme.tint);
+    tab.style.setProperty("--tab-border", theme.border);
+    tab.innerHTML = `
+      <span class="source-tab-label">${source}</span>
+      <span class="source-tab-count">${count}</span>
+    `;
+
+    sourceTabs.appendChild(tab);
+  });
+}
+
+function getSourceTabTheme(source) {
+  if (source === ALL_SOURCES) {
+    return {
+      accent: "#12202f",
+      border: "rgba(18, 32, 47, 0.16)",
+      ink: "#ffffff",
+      shadow: "0 12px 24px rgba(18, 32, 47, 0.18)",
+      tint: "rgba(18, 32, 47, 0.06)",
+    };
+  }
+
+  const theme = getSourceTheme(source);
+  const { r, g, b } = theme.rgb;
+
+  return {
+    accent: theme.background,
+    border: `rgba(${r}, ${g}, ${b}, 0.26)`,
+    ink: theme.ink,
+    shadow: `0 12px 24px rgba(${r}, ${g}, ${b}, 0.22)`,
+    tint: `rgba(${r}, ${g}, ${b}, 0.12)`,
+  };
+}
+
 function getSourceTheme(source) {
   const background = SOURCE_COLORS[source] || fallbackColorFor(source);
   const rgb = hexToRgb(background);
@@ -310,6 +411,8 @@ function getSourceTheme(source) {
     chipBorder,
     chipInk,
     ink,
+    lightBackground,
+    rgb,
     shadow: `0 16px 40px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.18)`,
   };
 }

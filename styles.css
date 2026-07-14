@@ -33,6 +33,93 @@ body {
   padding: 24px 0 40px;
 }
 
+.app-layout {
+  display: grid;
+  grid-template-columns: minmax(210px, 250px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.source-sidebar {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  min-width: 0;
+}
+
+.source-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  padding-right: 6px;
+}
+
+.source-tab {
+  width: 100%;
+  min-height: 52px;
+  border: 1px solid var(--tab-border, var(--line));
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(18, 32, 47, 0.05);
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.source-tab:hover {
+  transform: translateX(2px);
+  background: var(--tab-tint, rgba(18, 32, 47, 0.05));
+  border-color: var(--tab-border, var(--line-strong));
+}
+
+.source-tab.active {
+  background: var(--tab-accent, var(--line-strong));
+  color: var(--tab-ink, #ffffff);
+  border-color: transparent;
+  box-shadow: var(--tab-shadow, 0 12px 24px rgba(18, 32, 47, 0.16));
+}
+
+.source-tab-label,
+.source-tab-count {
+  position: relative;
+  z-index: 1;
+}
+
+.source-tab-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.source-tab-count {
+  min-width: 34px;
+  min-height: 28px;
+  padding: 0 9px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(18, 32, 47, 0.08);
+}
+
+.source-tab.active .source-tab-count {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.catalog-panel {
+  min-width: 0;
+}
+
 .search-wrap {
   position: sticky;
   top: 0;
@@ -55,6 +142,7 @@ body {
 }
 
 .search-wrap input:focus,
+.source-tab:focus-visible,
 .conversion-select:focus-visible,
 .action-chip:focus-visible {
   border-color: var(--line-strong);
@@ -221,6 +309,29 @@ body {
   color: var(--muted);
   background: #fafbfc;
   box-shadow: var(--shadow);
+}
+
+@media (max-width: 960px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .source-sidebar {
+    position: static;
+  }
+
+  .source-tabs {
+    flex-direction: row;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 0 6px;
+  }
+
+  .source-tab {
+    flex: 0 0 auto;
+    min-width: max-content;
+  }
 }
 
 @media (max-width: 720px) {

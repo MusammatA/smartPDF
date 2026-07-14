@@ -4,25 +4,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>smartPDF</title>
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=4">
   </head>
   <body>
     <div class="app-shell">
       <input id="file-input" name="file" type="file" hidden>
 
-      <div class="search-wrap">
-        <input
-          id="search-input"
-          type="search"
-          placeholder="Search transformation"
-          autocomplete="off"
-        >
-      </div>
+      <div class="app-layout">
+        <aside class="source-sidebar">
+          <div id="source-tabs" class="source-tabs" aria-label="Source format filters"></div>
+        </aside>
 
-      <div id="conversion-grid" class="conversion-grid"></div>
+        <div class="catalog-panel">
+          <div class="search-wrap">
+            <input
+              id="search-input"
+              type="search"
+              placeholder="Search transformation"
+              autocomplete="off"
+            >
+          </div>
+
+          <div id="conversion-grid" class="conversion-grid"></div>
+        </div>
+      </div>
       <div id="toast" class="toast" aria-live="polite"></div>
     </div>
 
-    <script src="app.js?v=5" defer></script>
+    <script src="app.js?v=6" defer></script>
   </body>
 </html>
