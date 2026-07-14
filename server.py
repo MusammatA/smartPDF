@@ -16,6 +16,9 @@ from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Callable
+from urllib.error import HTTPError, URLError
+from urllib.parse import unquote, urlparse
+from urllib.request import Request, urlopen
 from xml.etree import ElementTree as ET
 
 from docx import Document
@@ -444,6 +447,61 @@ def ensure_supported_input(upload_name: str, source_format: str) -> None:
         raise ConversionError(
             f"Expected a {source_format} upload. Allowed extensions: {', '.join(allowed)}"
         )
+
+
+def filename_from_remote_response(file_url: str, headers, source_format: str) -> str:
+    disposition = headers.get("Content-Disposition", "")
+    utf_match = re.search(r"filename\*=UTF-8''([^;]+)", disposition, re.IGNORECASE)
+    if utf_match:
+        filename = unquote(utf_match.group(1))
+    else:
+        plain_match = re.search(r'filename="?([^";]+)"?', disposition, re.IGNORECASE)
+        filename = plain_match.group(1) if plain_match else Path(unquote(urlparse(file_url).path)).name
+
+    filename = filename or f"{slugify(source_format)}-upload"
+    if detect_suffix(filename):
+        return filename
+
+    content_type = ""
+    if hasattr(headers, "get_content_type"):
+        content_type = headers.get_content_type()
+    else:
+        content_type = (headers.get("Content-Type", "") or "").split(";", 1)[0].strip()
+
+    fallback_extension = mimetypes.guess_extension(content_type or "") or (SOURCE_EXTENSIONS.get(source_format) or [""])[0]
+    return f"{safe_stem(filename)}{fallback_extension}"
+
+
+def read_remote_file(file_url: str, source_format: str) -> tuple[str, bytes]:
+    parsed = urlparse(file_url)
+    if parsed.scheme not in {"http", "https"}:
+        raise ConversionError("Please use a direct http or https file link.")
+
+    request = Request(file_url, headers={"User-Agent": "smartPDF/1.0"})
+    try:
+        with urlopen(request, timeout=25) as response:
+            upload_name = filename_from_remote_response(file_url, response.headers, source_format)
+            chunks: list[bytes] = []
+            size = 0
+            while True:
+                chunk = response.read(64 * 1024)
+                if not chunk:
+                    break
+                size += len(chunk)
+                if size > MAX_UPLOAD_BYTES:
+                    raise ConversionError(
+                        f"Linked file is too large. Limit is {MAX_UPLOAD_BYTES // (1024 * 1024)} MB."
+                    )
+                chunks.append(chunk)
+    except HTTPError as exc:
+        raise ConversionError(f"Could not download the file link ({exc.code}).") from exc
+    except URLError as exc:
+        raise ConversionError(f"Could not download the file link ({exc.reason}).") from exc
+
+    payload = b"".join(chunks)
+    if not payload:
+        raise ConversionError("The linked file was empty.")
+    return upload_name, payload
 
 
 def read_text_file(path: Path) -> str:
@@ -1625,20 +1683,41 @@ class SmartPDFHandler(SimpleHTTPRequestHandler):
             },
             keep_blank_values=True,
         )
-        if "file" not in form or "conversionKey" not in form:
-            self.respond_json({"error": "Both file and conversionKey are required."}, status=HTTPStatus.BAD_REQUEST)
+        if "conversionKey" not in form:
+            self.respond_json({"error": "A conversion target is required."}, status=HTTPStatus.BAD_REQUEST)
             return
-        upload_field = form["file"]
         conversion_key = form["conversionKey"].value
-        if not getattr(upload_field, "file", None) or not upload_field.filename:
-            self.respond_json({"error": "Please upload a file before converting."}, status=HTTPStatus.BAD_REQUEST)
+        entry = CATALOG_BY_KEY.get(conversion_key)
+        if not entry:
+            self.respond_json({"error": "Unknown conversion requested."}, status=HTTPStatus.BAD_REQUEST)
             return
-        payload = upload_field.file.read()
+
+        upload_field = form["file"] if "file" in form else None
+        file_url = form["fileUrl"].value.strip() if "fileUrl" in form and getattr(form["fileUrl"], "value", None) else ""
+
+        upload_name = ""
+        payload = b""
+        if getattr(upload_field, "file", None) and upload_field.filename:
+            upload_name = upload_field.filename
+            payload = upload_field.file.read()
+        elif file_url:
+            try:
+                upload_name, payload = read_remote_file(file_url, str(entry["source"]))
+            except ConversionError as exc:
+                self.respond_json({"error": str(exc)}, status=HTTPStatus.BAD_REQUEST)
+                return
+        else:
+            self.respond_json(
+                {"error": "Upload a file or paste a direct file link before converting."},
+                status=HTTPStatus.BAD_REQUEST,
+            )
+            return
+
         if not payload:
             self.respond_json({"error": "The uploaded file was empty."}, status=HTTPStatus.BAD_REQUEST)
             return
         try:
-            output_path, download_name = convert_file(upload_field.filename, payload, conversion_key)
+            output_path, download_name = convert_file(upload_name, payload, conversion_key)
         except ConversionError as exc:
             self.respond_json({"error": str(exc)}, status=HTTPStatus.BAD_REQUEST)
             return
