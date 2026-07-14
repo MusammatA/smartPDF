@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>smartPDF Converter</title>
+    <link rel="stylesheet" href="styles.css?v=6">
+  </head>
+  <body class="convert-page">
+    <div class="app-shell convert-shell">
+      <input id="file-input" name="file" type="file" hidden>
+
+      <div class="convert-topbar">
+        <button id="back-button" class="back-button" type="button">Back</button>
+        <span id="route-chip" class="route-chip"></span>
+      </div>
+
+      <div id="convert-screen" class="convert-screen"></div>
+      <div id="toast" class="toast" aria-live="polite"></div>
+    </div>
+
+    <script src="convert.js?v=1" defer></script>
+  </body>
+</html>

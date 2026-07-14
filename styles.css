@@ -126,6 +126,18 @@ input {
   min-width: 0;
 }
 
+.browse-shell {
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.browse-shell .empty-state {
+  grid-column: 1 / -1;
+}
+
 .search-wrap {
   position: sticky;
   top: 0;
@@ -169,6 +181,45 @@ input {
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+.convert-page .app-shell {
+  width: min(980px, calc(100% - 28px));
+}
+
+.convert-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.convert-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.route-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.convert-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .detail-screen {
@@ -367,6 +418,10 @@ input {
   box-shadow: 0 16px 34px var(--workspace-glow, rgba(18, 32, 47, 0.12));
 }
 
+.convert-workspace {
+  padding: 22px;
+}
+
 .converter-header {
   display: flex;
   align-items: start;
@@ -459,6 +514,10 @@ input {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.compact-panel {
+  margin-top: 18px;
 }
 
 .field-block {
@@ -644,7 +703,8 @@ input {
   .section-header,
   .progress-meta,
   .action-row,
-  .result-row {
+  .result-row,
+  .convert-topbar {
     flex-direction: column;
     align-items: stretch;
   }

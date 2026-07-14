@@ -4,12 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>smartPDF</title>
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=6">
   </head>
   <body>
     <div class="app-shell">
-      <input id="file-input" name="file" type="file" hidden>
-
       <div class="app-layout">
         <aside class="source-sidebar">
           <div id="source-tabs" class="source-tabs" aria-label="Source format filters"></div>
@@ -25,12 +23,12 @@
             >
           </div>
 
-          <div id="workspace-shell" class="workspace-shell"></div>
+          <div id="conversion-grid" class="browse-shell target-grid"></div>
         </div>
       </div>
       <div id="toast" class="toast" aria-live="polite"></div>
     </div>
 
-    <script src="app.js?v=8" defer></script>
+    <script src="app.js?v=9" defer></script>
   </body>
 </html>
