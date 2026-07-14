@@ -10,6 +10,8 @@ This project is a local web app for browsing a large transformation catalog, upl
 
 Then open [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
+If you open the repo as a static site, the conversion cards will still appear, but actual file conversion still requires the local Python server.
+
 ## What it supports now
 
 - PDF text extraction routes like `PDF -> TXT`, `PDF -> HTML`, `PDF -> DOCX`

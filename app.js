@@ -1,4 +1,6 @@
 const state = {
+  apiAvailable: false,
+  loadError: "",
   conversions: [],
   activeKey: null,
   file: null,
@@ -115,6 +117,7 @@ const conversionGrid = document.getElementById("conversion-grid");
 const fileInput = document.getElementById("file-input");
 const searchInput = document.getElementById("search-input");
 const toast = document.getElementById("toast");
+const appBaseUrl = new URL(".", window.location.href);
 
 async function boot() {
   bindEvents();
@@ -122,17 +125,37 @@ async function boot() {
   render();
 }
 
+function resolveAppUrl(path) {
+  return new URL(path, appBaseUrl);
+}
+
 async function loadCatalog() {
   try {
-    const response = await fetch("/api/conversions");
-    if (!response.ok) {
-      throw new Error("Could not load conversions.");
-    }
-    const data = await response.json();
+    const data = await fetchCatalog("api/conversions");
+    state.apiAvailable = true;
     state.conversions = data.conversions || [];
+    state.loadError = "";
   } catch (error) {
-    showToast(error.message || "Could not load conversions.", "error");
+    try {
+      const data = await fetchCatalog("catalog.json");
+      state.apiAvailable = false;
+      state.conversions = Array.isArray(data) ? data : data.conversions || [];
+      state.loadError = "";
+    } catch {
+      state.apiAvailable = false;
+      state.conversions = [];
+      state.loadError = error.message || "Could not load conversions.";
+      showToast(state.loadError, "error");
+    }
   }
+}
+
+async function fetchCatalog(path) {
+  const response = await fetch(resolveAppUrl(path));
+  if (!response.ok) {
+    throw new Error("Could not load conversions.");
+  }
+  return response.json();
 }
 
 function bindEvents() {
@@ -183,7 +206,11 @@ function render() {
   if (!visible.length) {
     const empty = document.createElement("div");
     empty.className = "empty-state";
-    empty.textContent = "No matching conversions";
+    if (!state.conversions.length && !state.query) {
+      empty.textContent = state.loadError || "No conversions available";
+    } else {
+      empty.textContent = "No matching conversions";
+    }
     conversionGrid.appendChild(empty);
     return;
   }
@@ -232,6 +259,11 @@ function render() {
         externalTag.className = "status-chip";
         externalTag.textContent = "External";
         actions.appendChild(externalTag);
+      } else if (!state.apiAvailable) {
+        const localTag = document.createElement("span");
+        localTag.className = "status-chip";
+        localTag.textContent = "Local server";
+        actions.appendChild(localTag);
       } else {
         const uploadButton = document.createElement("button");
         uploadButton.type = "button";
@@ -321,6 +353,11 @@ async function convertActive() {
     return;
   }
 
+  if (!state.apiAvailable) {
+    showToast("Start the local server to convert files.", "error");
+    return;
+  }
+
   state.isBusy = true;
   render();
 
@@ -329,7 +366,7 @@ async function convertActive() {
   formData.append("conversionKey", active.key);
 
   try {
-    const response = await fetch("/api/convert", {
+    const response = await fetch(resolveAppUrl("api/convert"), {
       method: "POST",
       body: formData,
     });
