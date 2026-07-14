@@ -3,99 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>smartPDF Local Studio</title>
-    <link rel="stylesheet" href="styles.css?v=1">
+    <title>smartPDF</title>
+    <link rel="stylesheet" href="styles.css?v=2">
   </head>
   <body>
-    <div class="page-shell">
-      <header class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Local Conversion Console</p>
-          <h1>Search, upload, transform, and download from one blacked-out workspace.</h1>
-          <p class="hero-text">
-            smartPDF turns your machine into a local conversion studio. Pick a square tab, search the catalog,
-            upload a file, and download the transformed result without leaving the browser.
-          </p>
-        </div>
-        <div class="hero-status">
-          <div class="status-card">
-            <span class="status-label">Server</span>
-            <strong id="server-status">Checking...</strong>
-          </div>
-          <div class="status-card">
-            <span class="status-label">Catalog</span>
-            <strong id="catalog-count">0 routes</strong>
-          </div>
-        </div>
-      </header>
+    <div class="app-shell">
+      <input id="file-input" name="file" type="file" hidden>
 
-      <section class="search-panel">
-        <label class="search-label" for="search-input">Search any transformation</label>
-        <div class="search-box">
-          <input
-            id="search-input"
-            type="search"
-            placeholder="Try PDF to DOCX, PNG to JPG, CSV to JSON..."
-            autocomplete="off"
-          >
-        </div>
-      </section>
+      <div class="search-wrap">
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search transformation"
+          autocomplete="off"
+        >
+      </div>
 
-      <section class="tabs-panel">
-        <div class="section-head">
-          <h2>Square Tabs</h2>
-          <p>Click a category to narrow the transformation grid.</p>
-        </div>
-        <div id="category-tabs" class="tabs-grid" aria-label="Conversion categories"></div>
-      </section>
-
-      <main class="workspace">
-        <section class="catalog-panel">
-          <div class="section-head">
-            <h2>Transformation Catalog</h2>
-            <p id="result-summary">Loading local routes...</p>
-          </div>
-          <div id="conversion-grid" class="conversion-grid"></div>
-        </section>
-
-        <aside class="control-panel">
-          <div class="panel-card selected-card">
-            <div class="selected-head">
-              <p class="eyebrow">Selected Route</p>
-              <h2 id="selected-label">Choose a transformation</h2>
-            </div>
-            <div class="detail-row">
-              <span>Status</span>
-              <strong id="selected-status">Waiting</strong>
-            </div>
-            <div class="detail-row">
-              <span>Accepted</span>
-              <strong id="selected-accept">-</strong>
-            </div>
-            <p id="selected-note" class="selected-note">
-              Pick a tile from the catalog to activate upload and conversion.
-            </p>
-          </div>
-
-          <form id="convert-form" class="panel-card convert-card">
-            <label class="upload-zone" for="file-input">
-              <input id="file-input" name="file" type="file">
-              <span class="upload-title">Upload a file</span>
-              <span class="upload-meta" id="upload-meta">No file selected yet.</span>
-            </label>
-
-            <button id="convert-button" class="convert-button" type="submit" disabled>
-              Transform and Download
-            </button>
-
-            <p id="message-box" class="message-box" aria-live="polite">
-              Search the catalog and select a route to begin.
-            </p>
-          </form>
-        </aside>
-      </main>
+      <div id="conversion-grid" class="conversion-grid"></div>
+      <div id="toast" class="toast" aria-live="polite"></div>
     </div>
 
-    <script src="app.js?v=2" defer></script>
+    <script src="app.js?v=3" defer></script>
   </body>
 </html>

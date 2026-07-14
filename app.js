@@ -1,60 +1,50 @@
 const state = {
   conversions: [],
-  activeCategory: "All",
   activeKey: null,
-  query: "",
   file: null,
+  isBusy: false,
+  query: "",
 };
 
-const categoryTabs = document.getElementById("category-tabs");
 const conversionGrid = document.getElementById("conversion-grid");
-const selectedLabel = document.getElementById("selected-label");
-const selectedStatus = document.getElementById("selected-status");
-const selectedAccept = document.getElementById("selected-accept");
-const selectedNote = document.getElementById("selected-note");
-const convertForm = document.getElementById("convert-form");
 const fileInput = document.getElementById("file-input");
-const uploadMeta = document.getElementById("upload-meta");
-const convertButton = document.getElementById("convert-button");
-const messageBox = document.getElementById("message-box");
-const resultSummary = document.getElementById("result-summary");
 const searchInput = document.getElementById("search-input");
-const serverStatus = document.getElementById("server-status");
-const catalogCount = document.getElementById("catalog-count");
+const toast = document.getElementById("toast");
 
 async function boot() {
-  await Promise.all([loadHealth(), loadCatalog()]);
   bindEvents();
+  await loadCatalog();
   render();
-}
-
-async function loadHealth() {
-  try {
-    const response = await fetch("/api/health");
-    if (!response.ok) {
-      throw new Error("Health check failed");
-    }
-    serverStatus.textContent = "Online";
-  } catch (error) {
-    serverStatus.textContent = "Offline";
-  }
 }
 
 async function loadCatalog() {
   try {
     const response = await fetch("/api/conversions");
     if (!response.ok) {
-      throw new Error("Could not load conversions");
+      throw new Error("Could not load conversions.");
     }
     const data = await response.json();
     state.conversions = data.conversions || [];
-    catalogCount.textContent = `${state.conversions.length} routes`;
-    const firstAvailable = state.conversions.find((entry) => entry.status !== "unavailable");
-    state.activeKey = firstAvailable?.key || state.conversions[0]?.key || null;
   } catch (error) {
-    state.conversions = [];
-    setMessage("Could not load the local conversion catalog.", "error");
+    showToast(error.message || "Could not load conversions.", "error");
   }
+}
+
+function bindEvents() {
+  searchInput.addEventListener("input", (event) => {
+    state.query = normalizeSearchText(event.target.value);
+    if (!getVisibleConversions().some((entry) => entry.key === state.activeKey)) {
+      state.activeKey = null;
+      clearSelectedFile();
+    }
+    render();
+  });
+
+  fileInput.addEventListener("change", (event) => {
+    const [file] = event.target.files;
+    state.file = file || null;
+    render();
+  });
 }
 
 function normalizeSearchText(value) {
@@ -65,203 +55,144 @@ function normalizeSearchText(value) {
     .trim();
 }
 
-function bindEvents() {
-  searchInput.addEventListener("input", (event) => {
-    state.query = normalizeSearchText(event.target.value);
-    const visible = getVisibleConversions();
-    if (!visible.some((entry) => entry.key === state.activeKey)) {
-      state.activeKey = visible[0]?.key || null;
-    }
-    render();
+function getVisibleConversions() {
+  return state.conversions.filter((entry) => {
+    const haystack = normalizeSearchText(`${entry.label} ${entry.category} ${entry.note} ${entry.status}`);
+    return !state.query || haystack.includes(state.query);
   });
-
-  fileInput.addEventListener("change", (event) => {
-    const [file] = event.target.files;
-    state.file = file || null;
-    uploadMeta.textContent = state.file
-      ? `${state.file.name} • ${formatFileSize(state.file.size)}`
-      : "No file selected yet.";
-    renderButtonState();
-  });
-
-  convertForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const active = getActiveConversion();
-    if (!active) {
-      setMessage("Select a conversion before uploading.", "error");
-      return;
-    }
-    if (active.status === "unavailable") {
-      setMessage(active.note, "error");
-      return;
-    }
-    if (!state.file) {
-      setMessage("Upload a file before converting.", "error");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("file", state.file);
-    formData.append("conversionKey", active.key);
-
-    convertButton.disabled = true;
-    setMessage(`Transforming ${state.file.name} into ${active.target}...`, "processing");
-
-    try {
-      const response = await fetch("/api/convert", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorPayload = await safeJson(response);
-        throw new Error(errorPayload?.error || "Conversion failed.");
-      }
-
-      const blob = await response.blob();
-      const disposition = response.headers.get("Content-Disposition") || "";
-      const filenameMatch = disposition.match(/filename="([^"]+)"/i);
-      const downloadName = filenameMatch?.[1] || `converted.${active.target.toLowerCase()}`;
-      triggerDownload(blob, downloadName);
-      setMessage(`Done. Downloaded ${downloadName}.`, "success");
-    } catch (error) {
-      setMessage(error.message || "Conversion failed.", "error");
-    } finally {
-      renderButtonState();
-    }
-  });
-}
-
-function safeJson(response) {
-  return response
-    .json()
-    .catch(() => null);
 }
 
 function getActiveConversion() {
   return state.conversions.find((entry) => entry.key === state.activeKey) || null;
 }
 
-function getVisibleConversions() {
-  return state.conversions.filter((entry) => {
-    const matchesCategory = state.activeCategory === "All" || entry.category === state.activeCategory;
-    const haystack = normalizeSearchText(`${entry.label} ${entry.category} ${entry.note} ${entry.status}`);
-    const matchesQuery = !state.query || haystack.includes(state.query);
-    return matchesCategory && matchesQuery;
-  });
-}
-
-function getCategories() {
-  const categories = ["All", ...new Set(state.conversions.map((entry) => entry.category))];
-  return categories;
+function clearSelectedFile() {
+  state.file = null;
+  fileInput.value = "";
 }
 
 function render() {
-  renderTabs();
-  renderGrid();
-  renderSelected();
-  renderButtonState();
-}
+  const visible = getVisibleConversions();
+  conversionGrid.innerHTML = "";
 
-function renderTabs() {
-  const categories = getCategories();
-  categoryTabs.innerHTML = "";
+  visible.forEach((entry) => {
+    const card = document.createElement("article");
+    const isActive = entry.key === state.activeKey;
+    const isUnavailable = entry.status === "unavailable";
 
-  categories.forEach((category) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = `tab-button${category === state.activeCategory ? " active" : ""}`;
-    const count = category === "All"
-      ? state.conversions.length
-      : state.conversions.filter((entry) => entry.category === category).length;
+    card.className = `conversion-card${isActive ? " active" : ""}${isUnavailable ? " unavailable" : ""}`;
 
-    button.innerHTML = `
-      <span class="tab-title">${category}</span>
-      <span class="tab-count">${count} routes</span>
+    const selectButton = document.createElement("button");
+    selectButton.type = "button";
+    selectButton.className = "conversion-select";
+    selectButton.innerHTML = `
+      <span class="conversion-title">${entry.label}</span>
+      <span class="route-dot ${entry.status}" aria-hidden="true"></span>
     `;
-    button.addEventListener("click", () => {
-      state.activeCategory = category;
-      const visible = getVisibleConversions();
-      if (!visible.some((entry) => entry.key === state.activeKey)) {
-        state.activeKey = visible[0]?.key || null;
+    selectButton.addEventListener("click", () => {
+      const nextKey = entry.key;
+      if (state.activeKey !== nextKey) {
+        state.activeKey = nextKey;
+        clearSelectedFile();
+      } else {
+        state.activeKey = null;
+        clearSelectedFile();
       }
       render();
     });
-    categoryTabs.appendChild(button);
+    card.appendChild(selectButton);
+
+    if (isActive) {
+      const actions = document.createElement("div");
+      actions.className = "conversion-actions";
+
+      if (isUnavailable) {
+        const externalTag = document.createElement("span");
+        externalTag.className = "status-chip";
+        externalTag.textContent = "External";
+        actions.appendChild(externalTag);
+      } else {
+        const uploadButton = document.createElement("button");
+        uploadButton.type = "button";
+        uploadButton.className = "action-chip";
+        uploadButton.textContent = state.file ? shortenName(state.file.name) : "Upload";
+        uploadButton.addEventListener("click", () => {
+          fileInput.click();
+        });
+
+        const convertButton = document.createElement("button");
+        convertButton.type = "button";
+        convertButton.className = "action-chip action-chip-primary";
+        convertButton.textContent = state.isBusy && isActive ? "..." : "Convert";
+        convertButton.disabled = state.isBusy || !state.file;
+        convertButton.addEventListener("click", () => {
+          convertActive();
+        });
+
+        actions.appendChild(uploadButton);
+        actions.appendChild(convertButton);
+      }
+
+      card.appendChild(actions);
+    }
+
+    conversionGrid.appendChild(card);
   });
 }
 
-function renderGrid() {
-  const visible = getVisibleConversions();
-  resultSummary.textContent = `${visible.length} result${visible.length === 1 ? "" : "s"} in view`;
-  conversionGrid.innerHTML = "";
-
-  if (!visible.length) {
-    const empty = document.createElement("div");
-    empty.className = "empty-state";
-    empty.textContent = "No transformations matched your search. Try a broader keyword like PDF, image, spreadsheet, or audio.";
-    conversionGrid.appendChild(empty);
+async function convertActive() {
+  const active = getActiveConversion();
+  if (!active || active.status === "unavailable" || !state.file || state.isBusy) {
     return;
   }
 
-  visible.forEach((entry) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = `conversion-card${entry.key === state.activeKey ? " active" : ""}`;
-    button.innerHTML = `
-      <h3>${entry.label}</h3>
-      <div class="conversion-meta">
-        <span class="badge ${entry.status}">${statusLabel(entry.status)}</span>
-        <span class="badge">${entry.category}</span>
-      </div>
-      <p class="conversion-note">${entry.note}</p>
-    `;
-    button.addEventListener("click", () => {
-      state.activeKey = entry.key;
-      setMessage(entry.status === "unavailable" ? entry.note : "Route ready. Upload a file to transform.", entry.status === "unavailable" ? "error" : "");
-      render();
+  state.isBusy = true;
+  render();
+
+  const formData = new FormData();
+  formData.append("file", state.file);
+  formData.append("conversionKey", active.key);
+
+  try {
+    const response = await fetch("/api/convert", {
+      method: "POST",
+      body: formData,
     });
-    conversionGrid.appendChild(button);
-  });
-}
 
-function renderSelected() {
-  const active = getActiveConversion();
-  if (!active) {
-    selectedLabel.textContent = "Choose a transformation";
-    selectedStatus.textContent = "Waiting";
-    selectedAccept.textContent = "-";
-    selectedNote.textContent = "Pick a tile from the catalog to activate upload and conversion.";
-    return;
+    if (!response.ok) {
+      const errorPayload = await safeJson(response);
+      throw new Error(errorPayload?.error || "Conversion failed.");
+    }
+
+    const blob = await response.blob();
+    const disposition = response.headers.get("Content-Disposition") || "";
+    const filenameMatch = disposition.match(/filename="([^"]+)"/i);
+    const downloadName = filenameMatch?.[1] || `converted.${active.target.toLowerCase()}`;
+    triggerDownload(blob, downloadName);
+    showToast(downloadName, "success");
+  } catch (error) {
+    showToast(error.message || "Conversion failed.", "error");
+  } finally {
+    state.isBusy = false;
+    render();
   }
-
-  selectedLabel.textContent = active.label;
-  selectedStatus.textContent = statusLabel(active.status);
-  selectedAccept.textContent = active.accept?.length ? active.accept.join(", ") : "Any";
-  selectedNote.textContent = active.note;
 }
 
-function renderButtonState() {
-  const active = getActiveConversion();
-  const disabled = !active || !state.file || active.status === "unavailable";
-  convertButton.disabled = disabled;
+function shortenName(name) {
+  return name.length > 18 ? `${name.slice(0, 15)}...` : name;
 }
 
-function setMessage(text, kind = "") {
-  messageBox.textContent = text;
-  messageBox.className = `message-box${kind ? ` ${kind}` : ""}`;
+function safeJson(response) {
+  return response.json().catch(() => null);
 }
 
-function statusLabel(status) {
-  if (status === "available") return "Available Now";
-  if (status === "partial") return "Local Export";
-  return "Needs Extra Engine";
-}
-
-function formatFileSize(bytes) {
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+function showToast(message, kind = "") {
+  toast.textContent = message;
+  toast.className = `toast show${kind ? ` ${kind}` : ""}`;
+  window.clearTimeout(showToast.timeoutId);
+  showToast.timeoutId = window.setTimeout(() => {
+    toast.className = "toast";
+  }, 2200);
 }
 
 function triggerDownload(blob, filename) {
