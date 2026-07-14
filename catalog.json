@@ -60,19 +60,6 @@
     ]
   },
   {
-    "key": "html-pdf",
-    "label": "HTML → PDF",
-    "source": "HTML",
-    "target": "PDF",
-    "category": "Documents",
-    "status": "partial",
-    "note": "Runs locally, but layout-heavy formats may export as simplified text or structure.",
-    "accept": [
-      ".html",
-      ".htm"
-    ]
-  },
-  {
     "key": "pdf-epub",
     "label": "PDF → EPUB",
     "source": "PDF",
@@ -109,18 +96,6 @@
     ]
   },
   {
-    "key": "odt-docx",
-    "label": "ODT → DOCX",
-    "source": "ODT",
-    "target": "DOCX",
-    "category": "Documents",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".odt"
-    ]
-  },
-  {
     "key": "docx-rtf",
     "label": "DOCX → RTF",
     "source": "DOCX",
@@ -130,18 +105,6 @@
     "note": "Runs locally in this app right now.",
     "accept": [
       ".docx"
-    ]
-  },
-  {
-    "key": "rtf-docx",
-    "label": "RTF → DOCX",
-    "source": "RTF",
-    "target": "DOCX",
-    "category": "Documents",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".rtf"
     ]
   },
   {
@@ -181,19 +144,6 @@
     ]
   },
   {
-    "key": "html-docx",
-    "label": "HTML → DOCX",
-    "source": "HTML",
-    "target": "DOCX",
-    "category": "Documents",
-    "status": "partial",
-    "note": "Runs locally, but layout-heavy formats may export as simplified text or structure.",
-    "accept": [
-      ".html",
-      ".htm"
-    ]
-  },
-  {
     "key": "docx-md",
     "label": "DOCX → MD",
     "source": "DOCX",
@@ -206,31 +156,6 @@
     ]
   },
   {
-    "key": "md-docx",
-    "label": "MD → DOCX",
-    "source": "MD",
-    "target": "DOCX",
-    "category": "Documents",
-    "status": "partial",
-    "note": "Runs locally, but layout-heavy formats may export as simplified text or structure.",
-    "accept": [
-      ".md",
-      ".markdown"
-    ]
-  },
-  {
-    "key": "odt-pdf",
-    "label": "ODT → PDF",
-    "source": "ODT",
-    "target": "PDF",
-    "category": "Documents",
-    "status": "partial",
-    "note": "Runs locally, but layout-heavy formats may export as simplified text or structure.",
-    "accept": [
-      ".odt"
-    ]
-  },
-  {
     "key": "pdf-odt",
     "label": "PDF → ODT",
     "source": "PDF",
@@ -240,18 +165,6 @@
     "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
     "accept": [
       ".pdf"
-    ]
-  },
-  {
-    "key": "rtf-txt",
-    "label": "RTF → TXT",
-    "source": "RTF",
-    "target": "TXT",
-    "category": "Documents",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".rtf"
     ]
   },
   {
@@ -303,30 +216,6 @@
     ]
   },
   {
-    "key": "ods-xlsx",
-    "label": "ODS → XLSX",
-    "source": "ODS",
-    "target": "XLSX",
-    "category": "Spreadsheets",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".ods"
-    ]
-  },
-  {
-    "key": "xls-xlsx",
-    "label": "XLS → XLSX",
-    "source": "XLS",
-    "target": "XLSX",
-    "category": "Spreadsheets",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".xls"
-    ]
-  },
-  {
     "key": "xlsx-xls",
     "label": "XLSX → XLS",
     "source": "XLSX",
@@ -375,19 +264,6 @@
     ]
   },
   {
-    "key": "html-xlsx",
-    "label": "HTML → XLSX",
-    "source": "HTML",
-    "target": "XLSX",
-    "category": "Spreadsheets",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".html",
-      ".htm"
-    ]
-  },
-  {
     "key": "csv-tsv",
     "label": "CSV → TSV",
     "source": "CSV",
@@ -400,18 +276,6 @@
     ]
   },
   {
-    "key": "tsv-csv",
-    "label": "TSV → CSV",
-    "source": "TSV",
-    "target": "CSV",
-    "category": "Spreadsheets",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".tsv"
-    ]
-  },
-  {
     "key": "csv-json",
     "label": "CSV → JSON",
     "source": "CSV",
@@ -421,18 +285,6 @@
     "note": "Runs locally in this app right now.",
     "accept": [
       ".csv"
-    ]
-  },
-  {
-    "key": "json-csv",
-    "label": "JSON → CSV",
-    "source": "JSON",
-    "target": "CSV",
-    "category": "Spreadsheets",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".json"
     ]
   },
   {
@@ -472,18 +324,6 @@
     ]
   },
   {
-    "key": "odp-pptx",
-    "label": "ODP → PPTX",
-    "source": "ODP",
-    "target": "PPTX",
-    "category": "Presentations",
-    "status": "unavailable",
-    "note": "Presentation image and ODP rendering typically need an office renderer, which is not healthy in this environment.",
-    "accept": [
-      ".odp"
-    ]
-  },
-  {
     "key": "pptx-images",
     "label": "PPTX → Images",
     "source": "PPTX",
@@ -496,16 +336,6 @@
     ]
   },
   {
-    "key": "images-pptx",
-    "label": "Images → PPTX",
-    "source": "Images",
-    "target": "PPTX",
-    "category": "Presentations",
-    "status": "unavailable",
-    "note": "Presentation image and ODP rendering typically need an office renderer, which is not healthy in this environment.",
-    "accept": []
-  },
-  {
     "key": "pptx-html",
     "label": "PPTX → HTML",
     "source": "PPTX",
@@ -515,19 +345,6 @@
     "note": "Runs locally, but layout-heavy formats may export as simplified text or structure.",
     "accept": [
       ".pptx"
-    ]
-  },
-  {
-    "key": "html-pptx",
-    "label": "HTML → PPTX",
-    "source": "HTML",
-    "target": "PPTX",
-    "category": "Presentations",
-    "status": "partial",
-    "note": "Runs locally, but layout-heavy formats may export as simplified text or structure.",
-    "accept": [
-      ".html",
-      ".htm"
     ]
   },
   {
@@ -568,18 +385,6 @@
     ]
   },
   {
-    "key": "webp-png",
-    "label": "WEBP → PNG",
-    "source": "WEBP",
-    "target": "PNG",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".webp"
-    ]
-  },
-  {
     "key": "png-gif",
     "label": "PNG → GIF",
     "source": "PNG",
@@ -589,18 +394,6 @@
     "note": "Runs locally in this app right now.",
     "accept": [
       ".png"
-    ]
-  },
-  {
-    "key": "gif-png",
-    "label": "GIF → PNG",
-    "source": "GIF",
-    "target": "PNG",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".gif"
     ]
   },
   {
@@ -616,18 +409,6 @@
     ]
   },
   {
-    "key": "bmp-png",
-    "label": "BMP → PNG",
-    "source": "BMP",
-    "target": "PNG",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".bmp"
-    ]
-  },
-  {
     "key": "png-tiff",
     "label": "PNG → TIFF",
     "source": "PNG",
@@ -637,19 +418,6 @@
     "note": "Runs locally in this app right now.",
     "accept": [
       ".png"
-    ]
-  },
-  {
-    "key": "tiff-png",
-    "label": "TIFF → PNG",
-    "source": "TIFF",
-    "target": "PNG",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".tif",
-      ".tiff"
     ]
   },
   {
@@ -665,18 +433,6 @@
     ]
   },
   {
-    "key": "ico-png",
-    "label": "ICO → PNG",
-    "source": "ICO",
-    "target": "PNG",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".ico"
-    ]
-  },
-  {
     "key": "png-avif",
     "label": "PNG → AVIF",
     "source": "PNG",
@@ -686,18 +442,6 @@
     "note": "Runs locally in this app right now.",
     "accept": [
       ".png"
-    ]
-  },
-  {
-    "key": "avif-png",
-    "label": "AVIF → PNG",
-    "source": "AVIF",
-    "target": "PNG",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".avif"
     ]
   },
   {
@@ -739,18 +483,6 @@
     ]
   },
   {
-    "key": "webp-jpg",
-    "label": "WEBP → JPG",
-    "source": "WEBP",
-    "target": "JPG",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".webp"
-    ]
-  },
-  {
     "key": "jpg-tiff",
     "label": "JPG → TIFF",
     "source": "JPG",
@@ -761,128 +493,6 @@
     "accept": [
       ".jpg",
       ".jpeg"
-    ]
-  },
-  {
-    "key": "tiff-jpg",
-    "label": "TIFF → JPG",
-    "source": "TIFF",
-    "target": "JPG",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".tif",
-      ".tiff"
-    ]
-  },
-  {
-    "key": "gif-webp",
-    "label": "GIF → WEBP",
-    "source": "GIF",
-    "target": "WEBP",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".gif"
-    ]
-  },
-  {
-    "key": "webp-gif",
-    "label": "WEBP → GIF",
-    "source": "WEBP",
-    "target": "GIF",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".webp"
-    ]
-  },
-  {
-    "key": "bmp-tiff",
-    "label": "BMP → TIFF",
-    "source": "BMP",
-    "target": "TIFF",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".bmp"
-    ]
-  },
-  {
-    "key": "tiff-bmp",
-    "label": "TIFF → BMP",
-    "source": "TIFF",
-    "target": "BMP",
-    "category": "Images (Raster)",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".tif",
-      ".tiff"
-    ]
-  },
-  {
-    "key": "svg-ai",
-    "label": "SVG → AI",
-    "source": "SVG",
-    "target": "AI",
-    "category": "Images (Vector)",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".svg"
-    ]
-  },
-  {
-    "key": "ai-svg",
-    "label": "AI → SVG",
-    "source": "AI",
-    "target": "SVG",
-    "category": "Images (Vector)",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".ai"
-    ]
-  },
-  {
-    "key": "svg-eps",
-    "label": "SVG → EPS",
-    "source": "SVG",
-    "target": "EPS",
-    "category": "Images (Vector)",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".svg"
-    ]
-  },
-  {
-    "key": "eps-svg",
-    "label": "EPS → SVG",
-    "source": "EPS",
-    "target": "SVG",
-    "category": "Images (Vector)",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".eps"
-    ]
-  },
-  {
-    "key": "svg-pdf",
-    "label": "SVG → PDF",
-    "source": "SVG",
-    "target": "PDF",
-    "category": "Images (Vector)",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".svg"
     ]
   },
   {
@@ -898,30 +508,6 @@
     ]
   },
   {
-    "key": "svg-dxf",
-    "label": "SVG → DXF",
-    "source": "SVG",
-    "target": "DXF",
-    "category": "Images (Vector)",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".svg"
-    ]
-  },
-  {
-    "key": "dxf-svg",
-    "label": "DXF → SVG",
-    "source": "DXF",
-    "target": "SVG",
-    "category": "Images (Vector)",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".dxf"
-    ]
-  },
-  {
     "key": "png-svg",
     "label": "PNG → SVG",
     "source": "PNG",
@@ -931,18 +517,6 @@
     "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
     "accept": [
       ".png"
-    ]
-  },
-  {
-    "key": "svg-png",
-    "label": "SVG → PNG",
-    "source": "SVG",
-    "target": "PNG",
-    "category": "Raster ↔ Vector",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".svg"
     ]
   },
   {
@@ -959,65 +533,6 @@
     ]
   },
   {
-    "key": "svg-jpg",
-    "label": "SVG → JPG",
-    "source": "SVG",
-    "target": "JPG",
-    "category": "Raster ↔ Vector",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".svg"
-    ]
-  },
-  {
-    "key": "bmp-svg",
-    "label": "BMP → SVG",
-    "source": "BMP",
-    "target": "SVG",
-    "category": "Raster ↔ Vector",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".bmp"
-    ]
-  },
-  {
-    "key": "svg-bmp",
-    "label": "SVG → BMP",
-    "source": "SVG",
-    "target": "BMP",
-    "category": "Raster ↔ Vector",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".svg"
-    ]
-  },
-  {
-    "key": "image-pdf",
-    "label": "Image → PDF",
-    "source": "Image",
-    "target": "PDF",
-    "category": "Image Documents",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".png",
-      ".jpg",
-      ".jpeg",
-      ".webp",
-      ".gif",
-      ".bmp",
-      ".tif",
-      ".tiff",
-      ".ico",
-      ".avif",
-      ".heic",
-      ".heif"
-    ]
-  },
-  {
     "key": "pdf-image",
     "label": "PDF → Image",
     "source": "PDF",
@@ -1027,29 +542,6 @@
     "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
     "accept": [
       ".pdf"
-    ]
-  },
-  {
-    "key": "image-docx",
-    "label": "Image → DOCX",
-    "source": "Image",
-    "target": "DOCX",
-    "category": "Image Documents",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".png",
-      ".jpg",
-      ".jpeg",
-      ".webp",
-      ".gif",
-      ".bmp",
-      ".tif",
-      ".tiff",
-      ".ico",
-      ".avif",
-      ".heic",
-      ".heif"
     ]
   },
   {
@@ -1065,29 +557,6 @@
     ]
   },
   {
-    "key": "image-txt",
-    "label": "Image → TXT",
-    "source": "Image",
-    "target": "TXT",
-    "category": "Image Documents",
-    "status": "unavailable",
-    "note": "Image to text needs OCR, which is not installed in this local bundle.",
-    "accept": [
-      ".png",
-      ".jpg",
-      ".jpeg",
-      ".webp",
-      ".gif",
-      ".bmp",
-      ".tif",
-      ".tiff",
-      ".ico",
-      ".avif",
-      ".heic",
-      ".heif"
-    ]
-  },
-  {
     "key": "txt-image",
     "label": "TXT → Image",
     "source": "TXT",
@@ -1097,42 +566,6 @@
     "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
     "accept": [
       ".txt"
-    ]
-  },
-  {
-    "key": "image-html",
-    "label": "Image → HTML",
-    "source": "Image",
-    "target": "HTML",
-    "category": "Image Documents",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".png",
-      ".jpg",
-      ".jpeg",
-      ".webp",
-      ".gif",
-      ".bmp",
-      ".tif",
-      ".tiff",
-      ".ico",
-      ".avif",
-      ".heic",
-      ".heif"
-    ]
-  },
-  {
-    "key": "html-image",
-    "label": "HTML → Image",
-    "source": "HTML",
-    "target": "Image",
-    "category": "Image Documents",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".html",
-      ".htm"
     ]
   },
   {
@@ -1148,18 +581,6 @@
     ]
   },
   {
-    "key": "wav-mp3",
-    "label": "WAV → MP3",
-    "source": "WAV",
-    "target": "MP3",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".wav"
-    ]
-  },
-  {
     "key": "mp3-aac",
     "label": "MP3 → AAC",
     "source": "MP3",
@@ -1169,18 +590,6 @@
     "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
     "accept": [
       ".mp3"
-    ]
-  },
-  {
-    "key": "aac-mp3",
-    "label": "AAC → MP3",
-    "source": "AAC",
-    "target": "MP3",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".aac"
     ]
   },
   {
@@ -1196,18 +605,6 @@
     ]
   },
   {
-    "key": "flac-mp3",
-    "label": "FLAC → MP3",
-    "source": "FLAC",
-    "target": "MP3",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".flac"
-    ]
-  },
-  {
     "key": "mp3-ogg",
     "label": "MP3 → OGG",
     "source": "MP3",
@@ -1217,18 +614,6 @@
     "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
     "accept": [
       ".mp3"
-    ]
-  },
-  {
-    "key": "ogg-mp3",
-    "label": "OGG → MP3",
-    "source": "OGG",
-    "target": "MP3",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".ogg"
     ]
   },
   {
@@ -1242,137 +627,6 @@
     "accept": [
       ".mp3"
     ]
-  },
-  {
-    "key": "m4a-mp3",
-    "label": "M4A → MP3",
-    "source": "M4A",
-    "target": "MP3",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".m4a"
-    ]
-  },
-  {
-    "key": "wav-flac",
-    "label": "WAV → FLAC",
-    "source": "WAV",
-    "target": "FLAC",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".wav"
-    ]
-  },
-  {
-    "key": "flac-wav",
-    "label": "FLAC → WAV",
-    "source": "FLAC",
-    "target": "WAV",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".flac"
-    ]
-  },
-  {
-    "key": "wav-aiff",
-    "label": "WAV → AIFF",
-    "source": "WAV",
-    "target": "AIFF",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".wav"
-    ]
-  },
-  {
-    "key": "aiff-wav",
-    "label": "AIFF → WAV",
-    "source": "AIFF",
-    "target": "WAV",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".aiff",
-      ".aif"
-    ]
-  },
-  {
-    "key": "wav-aac",
-    "label": "WAV → AAC",
-    "source": "WAV",
-    "target": "AAC",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".wav"
-    ]
-  },
-  {
-    "key": "aac-wav",
-    "label": "AAC → WAV",
-    "source": "AAC",
-    "target": "WAV",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".aac"
-    ]
-  },
-  {
-    "key": "aac-m4a",
-    "label": "AAC → M4A",
-    "source": "AAC",
-    "target": "M4A",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".aac"
-    ]
-  },
-  {
-    "key": "m4a-aac",
-    "label": "M4A → AAC",
-    "source": "M4A",
-    "target": "AAC",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".m4a"
-    ]
-  },
-  {
-    "key": "flac-alac",
-    "label": "FLAC → ALAC",
-    "source": "FLAC",
-    "target": "ALAC",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".flac"
-    ]
-  },
-  {
-    "key": "alac-flac",
-    "label": "ALAC → FLAC",
-    "source": "ALAC",
-    "target": "FLAC",
-    "category": "Audio",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": []
   },
   {
     "key": "mp4-mov",
@@ -1411,18 +665,6 @@
     ]
   },
   {
-    "key": "avi-mp4",
-    "label": "AVI → MP4",
-    "source": "AVI",
-    "target": "MP4",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".avi"
-    ]
-  },
-  {
     "key": "mp4-mkv",
     "label": "MP4 → MKV",
     "source": "MP4",
@@ -1432,18 +674,6 @@
     "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
     "accept": [
       ".mp4"
-    ]
-  },
-  {
-    "key": "mkv-mp4",
-    "label": "MKV → MP4",
-    "source": "MKV",
-    "target": "MP4",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".mkv"
     ]
   },
   {
@@ -1459,18 +689,6 @@
     ]
   },
   {
-    "key": "webm-mp4",
-    "label": "WEBM → MP4",
-    "source": "WEBM",
-    "target": "MP4",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".webm"
-    ]
-  },
-  {
     "key": "mp4-wmv",
     "label": "MP4 → WMV",
     "source": "MP4",
@@ -1480,18 +698,6 @@
     "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
     "accept": [
       ".mp4"
-    ]
-  },
-  {
-    "key": "wmv-mp4",
-    "label": "WMV → MP4",
-    "source": "WMV",
-    "target": "MP4",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".wmv"
     ]
   },
   {
@@ -1507,18 +713,6 @@
     ]
   },
   {
-    "key": "flv-mp4",
-    "label": "FLV → MP4",
-    "source": "FLV",
-    "target": "MP4",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".flv"
-    ]
-  },
-  {
     "key": "mp4-gif",
     "label": "MP4 → GIF",
     "source": "MP4",
@@ -1528,18 +722,6 @@
     "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
     "accept": [
       ".mp4"
-    ]
-  },
-  {
-    "key": "gif-mp4",
-    "label": "GIF → MP4",
-    "source": "GIF",
-    "target": "MP4",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".gif"
     ]
   },
   {
@@ -1555,18 +737,6 @@
     ]
   },
   {
-    "key": "avi-mov",
-    "label": "AVI → MOV",
-    "source": "AVI",
-    "target": "MOV",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".avi"
-    ]
-  },
-  {
     "key": "mov-mkv",
     "label": "MOV → MKV",
     "source": "MOV",
@@ -1576,208 +746,6 @@
     "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
     "accept": [
       ".mov"
-    ]
-  },
-  {
-    "key": "mkv-mov",
-    "label": "MKV → MOV",
-    "source": "MKV",
-    "target": "MOV",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".mkv"
-    ]
-  },
-  {
-    "key": "avi-mkv",
-    "label": "AVI → MKV",
-    "source": "AVI",
-    "target": "MKV",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".avi"
-    ]
-  },
-  {
-    "key": "mkv-avi",
-    "label": "MKV → AVI",
-    "source": "MKV",
-    "target": "AVI",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".mkv"
-    ]
-  },
-  {
-    "key": "mkv-webm",
-    "label": "MKV → WEBM",
-    "source": "MKV",
-    "target": "WEBM",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".mkv"
-    ]
-  },
-  {
-    "key": "webm-mkv",
-    "label": "WEBM → MKV",
-    "source": "WEBM",
-    "target": "MKV",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".webm"
-    ]
-  },
-  {
-    "key": "webm-avi",
-    "label": "WEBM → AVI",
-    "source": "WEBM",
-    "target": "AVI",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".webm"
-    ]
-  },
-  {
-    "key": "avi-webm",
-    "label": "AVI → WEBM",
-    "source": "AVI",
-    "target": "WEBM",
-    "category": "Video",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".avi"
-    ]
-  },
-  {
-    "key": "video-gif",
-    "label": "Video → GIF",
-    "source": "Video",
-    "target": "GIF",
-    "category": "Video Frames",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".mp4",
-      ".mov",
-      ".avi",
-      ".mkv",
-      ".webm",
-      ".wmv",
-      ".flv"
-    ]
-  },
-  {
-    "key": "gif-video",
-    "label": "GIF → Video",
-    "source": "GIF",
-    "target": "Video",
-    "category": "Video Frames",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".gif"
-    ]
-  },
-  {
-    "key": "video-images",
-    "label": "Video → Images",
-    "source": "Video",
-    "target": "Images",
-    "category": "Video Frames",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".mp4",
-      ".mov",
-      ".avi",
-      ".mkv",
-      ".webm",
-      ".wmv",
-      ".flv"
-    ]
-  },
-  {
-    "key": "images-video",
-    "label": "Images → Video",
-    "source": "Images",
-    "target": "Video",
-    "category": "Video Frames",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": []
-  },
-  {
-    "key": "srt-vtt",
-    "label": "SRT → VTT",
-    "source": "SRT",
-    "target": "VTT",
-    "category": "Subtitles",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".srt"
-    ]
-  },
-  {
-    "key": "vtt-srt",
-    "label": "VTT → SRT",
-    "source": "VTT",
-    "target": "SRT",
-    "category": "Subtitles",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".vtt"
-    ]
-  },
-  {
-    "key": "srt-ass",
-    "label": "SRT → ASS",
-    "source": "SRT",
-    "target": "ASS",
-    "category": "Subtitles",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".srt"
-    ]
-  },
-  {
-    "key": "ass-srt",
-    "label": "ASS → SRT",
-    "source": "ASS",
-    "target": "SRT",
-    "category": "Subtitles",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".ass"
-    ]
-  },
-  {
-    "key": "srt-txt",
-    "label": "SRT → TXT",
-    "source": "SRT",
-    "target": "TXT",
-    "category": "Subtitles",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".srt"
     ]
   },
   {
@@ -1793,30 +761,6 @@
     ]
   },
   {
-    "key": "vtt-ass",
-    "label": "VTT → ASS",
-    "source": "VTT",
-    "target": "ASS",
-    "category": "Subtitles",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".vtt"
-    ]
-  },
-  {
-    "key": "ass-vtt",
-    "label": "ASS → VTT",
-    "source": "ASS",
-    "target": "VTT",
-    "category": "Subtitles",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".ass"
-    ]
-  },
-  {
     "key": "zip-rar",
     "label": "ZIP → RAR",
     "source": "ZIP",
@@ -1826,18 +770,6 @@
     "note": "Archive routes need additional archive engines for formats beyond built-in ZIP/TAR support.",
     "accept": [
       ".zip"
-    ]
-  },
-  {
-    "key": "rar-zip",
-    "label": "RAR → ZIP",
-    "source": "RAR",
-    "target": "ZIP",
-    "category": "Archives",
-    "status": "unavailable",
-    "note": "Archive routes need additional archive engines for formats beyond built-in ZIP/TAR support.",
-    "accept": [
-      ".rar"
     ]
   },
   {
@@ -1853,18 +785,6 @@
     ]
   },
   {
-    "key": "7z-zip",
-    "label": "7Z → ZIP",
-    "source": "7Z",
-    "target": "ZIP",
-    "category": "Archives",
-    "status": "unavailable",
-    "note": "Archive routes need additional archive engines for formats beyond built-in ZIP/TAR support.",
-    "accept": [
-      ".7z"
-    ]
-  },
-  {
     "key": "zip-tar",
     "label": "ZIP → TAR",
     "source": "ZIP",
@@ -1874,78 +794,6 @@
     "note": "Archive routes need additional archive engines for formats beyond built-in ZIP/TAR support.",
     "accept": [
       ".zip"
-    ]
-  },
-  {
-    "key": "tar-zip",
-    "label": "TAR → ZIP",
-    "source": "TAR",
-    "target": "ZIP",
-    "category": "Archives",
-    "status": "unavailable",
-    "note": "Archive routes need additional archive engines for formats beyond built-in ZIP/TAR support.",
-    "accept": [
-      ".tar"
-    ]
-  },
-  {
-    "key": "tar-gz",
-    "label": "TAR → GZ",
-    "source": "TAR",
-    "target": "GZ",
-    "category": "Archives",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".tar"
-    ]
-  },
-  {
-    "key": "gz-tar",
-    "label": "GZ → TAR",
-    "source": "GZ",
-    "target": "TAR",
-    "category": "Archives",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".gz"
-    ]
-  },
-  {
-    "key": "tar-xz",
-    "label": "TAR → XZ",
-    "source": "TAR",
-    "target": "XZ",
-    "category": "Archives",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".tar"
-    ]
-  },
-  {
-    "key": "xz-tar",
-    "label": "XZ → TAR",
-    "source": "XZ",
-    "target": "TAR",
-    "category": "Archives",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".xz"
-    ]
-  },
-  {
-    "key": "iso-zip",
-    "label": "ISO → ZIP",
-    "source": "ISO",
-    "target": "ZIP",
-    "category": "Archives",
-    "status": "unavailable",
-    "note": "Archive routes need additional archive engines for formats beyond built-in ZIP/TAR support.",
-    "accept": [
-      ".iso"
     ]
   },
   {
@@ -1973,18 +821,6 @@
     ]
   },
   {
-    "key": "mobi-epub",
-    "label": "MOBI → EPUB",
-    "source": "MOBI",
-    "target": "EPUB",
-    "category": "eBooks",
-    "status": "unavailable",
-    "note": "eBook routes need dedicated eBook packaging and rendering logic beyond this local MVP.",
-    "accept": [
-      ".mobi"
-    ]
-  },
-  {
     "key": "epub-azw3",
     "label": "EPUB → AZW3",
     "source": "EPUB",
@@ -1997,18 +833,6 @@
     ]
   },
   {
-    "key": "azw3-epub",
-    "label": "AZW3 → EPUB",
-    "source": "AZW3",
-    "target": "EPUB",
-    "category": "eBooks",
-    "status": "unavailable",
-    "note": "eBook routes need dedicated eBook packaging and rendering logic beyond this local MVP.",
-    "accept": [
-      ".azw3"
-    ]
-  },
-  {
     "key": "epub-html",
     "label": "EPUB → HTML",
     "source": "EPUB",
@@ -2018,19 +842,6 @@
     "note": "eBook routes need dedicated eBook packaging and rendering logic beyond this local MVP.",
     "accept": [
       ".epub"
-    ]
-  },
-  {
-    "key": "html-epub",
-    "label": "HTML → EPUB",
-    "source": "HTML",
-    "target": "EPUB",
-    "category": "eBooks",
-    "status": "unavailable",
-    "note": "eBook routes need dedicated eBook packaging and rendering logic beyond this local MVP.",
-    "accept": [
-      ".html",
-      ".htm"
     ]
   },
   {
@@ -2058,18 +869,6 @@
     ]
   },
   {
-    "key": "fb2-epub",
-    "label": "FB2 → EPUB",
-    "source": "FB2",
-    "target": "EPUB",
-    "category": "eBooks",
-    "status": "unavailable",
-    "note": "eBook routes need dedicated eBook packaging and rendering logic beyond this local MVP.",
-    "accept": [
-      ".fb2"
-    ]
-  },
-  {
     "key": "epub-fb2",
     "label": "EPUB → FB2",
     "source": "EPUB",
@@ -2079,42 +878,6 @@
     "note": "eBook routes need dedicated eBook packaging and rendering logic beyond this local MVP.",
     "accept": [
       ".epub"
-    ]
-  },
-  {
-    "key": "json-xml",
-    "label": "JSON → XML",
-    "source": "JSON",
-    "target": "XML",
-    "category": "Code & Markup",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".json"
-    ]
-  },
-  {
-    "key": "xml-json",
-    "label": "XML → JSON",
-    "source": "XML",
-    "target": "JSON",
-    "category": "Code & Markup",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".xml"
-    ]
-  },
-  {
-    "key": "xml-csv",
-    "label": "XML → CSV",
-    "source": "XML",
-    "target": "CSV",
-    "category": "Code & Markup",
-    "status": "partial",
-    "note": "Runs locally, but layout-heavy formats may export as simplified text or structure.",
-    "accept": [
-      ".xml"
     ]
   },
   {
@@ -2130,70 +893,6 @@
     ]
   },
   {
-    "key": "xml-html",
-    "label": "XML → HTML",
-    "source": "XML",
-    "target": "HTML",
-    "category": "Code & Markup",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".xml"
-    ]
-  },
-  {
-    "key": "html-xml",
-    "label": "HTML → XML",
-    "source": "HTML",
-    "target": "XML",
-    "category": "Code & Markup",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".html",
-      ".htm"
-    ]
-  },
-  {
-    "key": "html-md",
-    "label": "HTML → MD",
-    "source": "HTML",
-    "target": "MD",
-    "category": "Code & Markup",
-    "status": "partial",
-    "note": "Runs locally, but layout-heavy formats may export as simplified text or structure.",
-    "accept": [
-      ".html",
-      ".htm"
-    ]
-  },
-  {
-    "key": "md-html",
-    "label": "MD → HTML",
-    "source": "MD",
-    "target": "HTML",
-    "category": "Code & Markup",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".md",
-      ".markdown"
-    ]
-  },
-  {
-    "key": "md-pdf",
-    "label": "MD → PDF",
-    "source": "MD",
-    "target": "PDF",
-    "category": "Code & Markup",
-    "status": "partial",
-    "note": "Runs locally, but layout-heavy formats may export as simplified text or structure.",
-    "accept": [
-      ".md",
-      ".markdown"
-    ]
-  },
-  {
     "key": "pdf-md",
     "label": "PDF → MD",
     "source": "PDF",
@@ -2206,16 +905,6 @@
     ]
   },
   {
-    "key": "sql-csv",
-    "label": "SQL → CSV",
-    "source": "SQL",
-    "target": "CSV",
-    "category": "Code & Markup",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": []
-  },
-  {
     "key": "csv-sql",
     "label": "CSV → SQL",
     "source": "CSV",
@@ -2225,381 +914,6 @@
     "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
     "accept": [
       ".csv"
-    ]
-  },
-  {
-    "key": "ttf-otf",
-    "label": "TTF → OTF",
-    "source": "TTF",
-    "target": "OTF",
-    "category": "Fonts",
-    "status": "unavailable",
-    "note": "Font conversions need font-specific tooling that is not bundled here.",
-    "accept": [
-      ".ttf"
-    ]
-  },
-  {
-    "key": "otf-ttf",
-    "label": "OTF → TTF",
-    "source": "OTF",
-    "target": "TTF",
-    "category": "Fonts",
-    "status": "unavailable",
-    "note": "Font conversions need font-specific tooling that is not bundled here.",
-    "accept": [
-      ".otf"
-    ]
-  },
-  {
-    "key": "ttf-woff",
-    "label": "TTF → WOFF",
-    "source": "TTF",
-    "target": "WOFF",
-    "category": "Fonts",
-    "status": "unavailable",
-    "note": "Font conversions need font-specific tooling that is not bundled here.",
-    "accept": [
-      ".ttf"
-    ]
-  },
-  {
-    "key": "woff-ttf",
-    "label": "WOFF → TTF",
-    "source": "WOFF",
-    "target": "TTF",
-    "category": "Fonts",
-    "status": "unavailable",
-    "note": "Font conversions need font-specific tooling that is not bundled here.",
-    "accept": [
-      ".woff"
-    ]
-  },
-  {
-    "key": "ttf-woff2",
-    "label": "TTF → WOFF2",
-    "source": "TTF",
-    "target": "WOFF2",
-    "category": "Fonts",
-    "status": "unavailable",
-    "note": "Font conversions need font-specific tooling that is not bundled here.",
-    "accept": [
-      ".ttf"
-    ]
-  },
-  {
-    "key": "woff2-ttf",
-    "label": "WOFF2 → TTF",
-    "source": "WOFF2",
-    "target": "TTF",
-    "category": "Fonts",
-    "status": "unavailable",
-    "note": "Font conversions need font-specific tooling that is not bundled here.",
-    "accept": [
-      ".woff2"
-    ]
-  },
-  {
-    "key": "otf-woff",
-    "label": "OTF → WOFF",
-    "source": "OTF",
-    "target": "WOFF",
-    "category": "Fonts",
-    "status": "unavailable",
-    "note": "Font conversions need font-specific tooling that is not bundled here.",
-    "accept": [
-      ".otf"
-    ]
-  },
-  {
-    "key": "woff-otf",
-    "label": "WOFF → OTF",
-    "source": "WOFF",
-    "target": "OTF",
-    "category": "Fonts",
-    "status": "unavailable",
-    "note": "Font conversions need font-specific tooling that is not bundled here.",
-    "accept": [
-      ".woff"
-    ]
-  },
-  {
-    "key": "woff-woff2",
-    "label": "WOFF → WOFF2",
-    "source": "WOFF",
-    "target": "WOFF2",
-    "category": "Fonts",
-    "status": "unavailable",
-    "note": "Font conversions need font-specific tooling that is not bundled here.",
-    "accept": [
-      ".woff"
-    ]
-  },
-  {
-    "key": "woff2-woff",
-    "label": "WOFF2 → WOFF",
-    "source": "WOFF2",
-    "target": "WOFF",
-    "category": "Fonts",
-    "status": "unavailable",
-    "note": "Font conversions need font-specific tooling that is not bundled here.",
-    "accept": [
-      ".woff2"
-    ]
-  },
-  {
-    "key": "dwg-dxf",
-    "label": "DWG → DXF",
-    "source": "DWG",
-    "target": "DXF",
-    "category": "CAD",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".dwg"
-    ]
-  },
-  {
-    "key": "dxf-dwg",
-    "label": "DXF → DWG",
-    "source": "DXF",
-    "target": "DWG",
-    "category": "CAD",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": [
-      ".dxf"
-    ]
-  },
-  {
-    "key": "stl-step",
-    "label": "STL → STEP",
-    "source": "STL",
-    "target": "STEP",
-    "category": "CAD",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".stl"
-    ]
-  },
-  {
-    "key": "step-stl",
-    "label": "STEP → STL",
-    "source": "STEP",
-    "target": "STL",
-    "category": "CAD",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".step",
-      ".stp"
-    ]
-  },
-  {
-    "key": "stl-obj",
-    "label": "STL → OBJ",
-    "source": "STL",
-    "target": "OBJ",
-    "category": "CAD",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".stl"
-    ]
-  },
-  {
-    "key": "obj-stl",
-    "label": "OBJ → STL",
-    "source": "OBJ",
-    "target": "STL",
-    "category": "CAD",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".obj"
-    ]
-  },
-  {
-    "key": "step-iges",
-    "label": "STEP → IGES",
-    "source": "STEP",
-    "target": "IGES",
-    "category": "CAD",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".step",
-      ".stp"
-    ]
-  },
-  {
-    "key": "iges-step",
-    "label": "IGES → STEP",
-    "source": "IGES",
-    "target": "STEP",
-    "category": "CAD",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".iges",
-      ".igs"
-    ]
-  },
-  {
-    "key": "obj-fbx",
-    "label": "OBJ → FBX",
-    "source": "OBJ",
-    "target": "FBX",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".obj"
-    ]
-  },
-  {
-    "key": "fbx-obj",
-    "label": "FBX → OBJ",
-    "source": "FBX",
-    "target": "OBJ",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".fbx"
-    ]
-  },
-  {
-    "key": "obj-gltf",
-    "label": "OBJ → GLTF",
-    "source": "OBJ",
-    "target": "GLTF",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".obj"
-    ]
-  },
-  {
-    "key": "gltf-obj",
-    "label": "GLTF → OBJ",
-    "source": "GLTF",
-    "target": "OBJ",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".gltf"
-    ]
-  },
-  {
-    "key": "glb-fbx",
-    "label": "GLB → FBX",
-    "source": "GLB",
-    "target": "FBX",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".glb"
-    ]
-  },
-  {
-    "key": "fbx-glb",
-    "label": "FBX → GLB",
-    "source": "FBX",
-    "target": "GLB",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".fbx"
-    ]
-  },
-  {
-    "key": "glb-stl",
-    "label": "GLB → STL",
-    "source": "GLB",
-    "target": "STL",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".glb"
-    ]
-  },
-  {
-    "key": "stl-glb",
-    "label": "STL → GLB",
-    "source": "STL",
-    "target": "GLB",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".stl"
-    ]
-  },
-  {
-    "key": "ply-obj",
-    "label": "PLY → OBJ",
-    "source": "PLY",
-    "target": "OBJ",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".ply"
-    ]
-  },
-  {
-    "key": "obj-ply",
-    "label": "OBJ → PLY",
-    "source": "OBJ",
-    "target": "PLY",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".obj"
-    ]
-  },
-  {
-    "key": "usdz-glb",
-    "label": "USDZ → GLB",
-    "source": "USDZ",
-    "target": "GLB",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".usdz"
-    ]
-  },
-  {
-    "key": "glb-usdz",
-    "label": "GLB → USDZ",
-    "source": "GLB",
-    "target": "USDZ",
-    "category": "3D Models",
-    "status": "unavailable",
-    "note": "CAD and 3D routes need specialized geometry converters.",
-    "accept": [
-      ".glb"
-    ]
-  },
-  {
-    "key": "eml-pdf",
-    "label": "EML → PDF",
-    "source": "EML",
-    "target": "PDF",
-    "category": "Email",
-    "status": "partial",
-    "note": "Runs locally, but layout-heavy formats may export as simplified text or structure.",
-    "accept": [
-      ".eml"
     ]
   },
   {
@@ -2615,18 +929,6 @@
     ]
   },
   {
-    "key": "msg-pdf",
-    "label": "MSG → PDF",
-    "source": "MSG",
-    "target": "PDF",
-    "category": "Email",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".msg"
-    ]
-  },
-  {
     "key": "pdf-msg",
     "label": "PDF → MSG",
     "source": "PDF",
@@ -2636,43 +938,6 @@
     "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
     "accept": [
       ".pdf"
-    ]
-  },
-  {
-    "key": "eml-html",
-    "label": "EML → HTML",
-    "source": "EML",
-    "target": "HTML",
-    "category": "Email",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".eml"
-    ]
-  },
-  {
-    "key": "html-eml",
-    "label": "HTML → EML",
-    "source": "HTML",
-    "target": "EML",
-    "category": "Email",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".html",
-      ".htm"
-    ]
-  },
-  {
-    "key": "ics-csv",
-    "label": "ICS → CSV",
-    "source": "ICS",
-    "target": "CSV",
-    "category": "Calendars",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".ics"
     ]
   },
   {
@@ -2686,362 +951,5 @@
     "accept": [
       ".csv"
     ]
-  },
-  {
-    "key": "ics-json",
-    "label": "ICS → JSON",
-    "source": "ICS",
-    "target": "JSON",
-    "category": "Calendars",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".ics"
-    ]
-  },
-  {
-    "key": "json-ics",
-    "label": "JSON → ICS",
-    "source": "JSON",
-    "target": "ICS",
-    "category": "Calendars",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".json"
-    ]
-  },
-  {
-    "key": "gpx-kml",
-    "label": "GPX → KML",
-    "source": "GPX",
-    "target": "KML",
-    "category": "GPS",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".gpx"
-    ]
-  },
-  {
-    "key": "kml-gpx",
-    "label": "KML → GPX",
-    "source": "KML",
-    "target": "GPX",
-    "category": "GPS",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".kml"
-    ]
-  },
-  {
-    "key": "gpx-geojson",
-    "label": "GPX → GeoJSON",
-    "source": "GPX",
-    "target": "GeoJSON",
-    "category": "GPS",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".gpx"
-    ]
-  },
-  {
-    "key": "geojson-gpx",
-    "label": "GeoJSON → GPX",
-    "source": "GeoJSON",
-    "target": "GPX",
-    "category": "GPS",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".geojson",
-      ".json"
-    ]
-  },
-  {
-    "key": "kml-geojson",
-    "label": "KML → GeoJSON",
-    "source": "KML",
-    "target": "GeoJSON",
-    "category": "GPS",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".kml"
-    ]
-  },
-  {
-    "key": "geojson-kml",
-    "label": "GeoJSON → KML",
-    "source": "GeoJSON",
-    "target": "KML",
-    "category": "GPS",
-    "status": "available",
-    "note": "Runs locally in this app right now.",
-    "accept": [
-      ".geojson",
-      ".json"
-    ]
-  },
-  {
-    "key": "audio-text",
-    "label": "Audio → Text",
-    "source": "Audio",
-    "target": "Text",
-    "category": "Speech",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".mp3",
-      ".wav",
-      ".aac",
-      ".flac",
-      ".ogg",
-      ".m4a",
-      ".aiff",
-      ".aif"
-    ]
-  },
-  {
-    "key": "text-audio",
-    "label": "Text → Audio",
-    "source": "Text",
-    "target": "Audio",
-    "category": "Speech",
-    "status": "unavailable",
-    "note": "Audio and speech routes need media encoders or transcription engines that are not bundled here.",
-    "accept": [
-      ".txt",
-      ".md",
-      ".json",
-      ".xml",
-      ".csv",
-      ".tsv",
-      ".html",
-      ".htm"
-    ]
-  },
-  {
-    "key": "video-text",
-    "label": "Video → Text",
-    "source": "Video",
-    "target": "Text",
-    "category": "Speech",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".mp4",
-      ".mov",
-      ".avi",
-      ".mkv",
-      ".webm",
-      ".wmv",
-      ".flv"
-    ]
-  },
-  {
-    "key": "text-video",
-    "label": "Text → Video",
-    "source": "Text",
-    "target": "Video",
-    "category": "Speech",
-    "status": "unavailable",
-    "note": "Video routes need FFmpeg-style renderers to preserve frames, codecs, and timing.",
-    "accept": [
-      ".txt",
-      ".md",
-      ".json",
-      ".xml",
-      ".csv",
-      ".tsv",
-      ".html",
-      ".htm"
-    ]
-  },
-  {
-    "key": "text-speech",
-    "label": "Text → Speech",
-    "source": "Text",
-    "target": "Speech",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "Text to speech needs a speech synthesis engine for downloadable audio output.",
-    "accept": [
-      ".txt",
-      ".md",
-      ".json",
-      ".xml",
-      ".csv",
-      ".tsv",
-      ".html",
-      ".htm"
-    ]
-  },
-  {
-    "key": "text-image",
-    "label": "Text → Image",
-    "source": "Text",
-    "target": "Image",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".txt",
-      ".md",
-      ".json",
-      ".xml",
-      ".csv",
-      ".tsv",
-      ".html",
-      ".htm"
-    ]
-  },
-  {
-    "key": "image-text",
-    "label": "Image → Text",
-    "source": "Image",
-    "target": "Text",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "Listed in the catalog, but this route needs extra local engines such as OCR, FFmpeg, Office renderers, or format-specific converters.",
-    "accept": [
-      ".png",
-      ".jpg",
-      ".jpeg",
-      ".webp",
-      ".gif",
-      ".bmp",
-      ".tif",
-      ".tiff",
-      ".ico",
-      ".avif",
-      ".heic",
-      ".heif"
-    ]
-  },
-  {
-    "key": "image-react",
-    "label": "Image → React",
-    "source": "Image",
-    "target": "React",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "AI-assisted routes need model-backed inference engines, which are outside this local-only build.",
-    "accept": [
-      ".png",
-      ".jpg",
-      ".jpeg",
-      ".webp",
-      ".gif",
-      ".bmp",
-      ".tif",
-      ".tiff",
-      ".ico",
-      ".avif",
-      ".heic",
-      ".heif"
-    ]
-  },
-  {
-    "key": "sketch-svg",
-    "label": "Sketch → SVG",
-    "source": "Sketch",
-    "target": "SVG",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "Vector and CAD routes need dedicated graphic or CAD converters.",
-    "accept": []
-  },
-  {
-    "key": "sketch-png",
-    "label": "Sketch → PNG",
-    "source": "Sketch",
-    "target": "PNG",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "This AI route needs specialized model inference to produce high-quality results.",
-    "accept": []
-  },
-  {
-    "key": "table-image-xlsx",
-    "label": "Table Image → XLSX",
-    "source": "Table Image",
-    "target": "XLSX",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "This AI route needs specialized model inference to produce high-quality results.",
-    "accept": []
-  },
-  {
-    "key": "diagram-image-mermaid",
-    "label": "Diagram Image → Mermaid",
-    "source": "Diagram Image",
-    "target": "Mermaid",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "AI-assisted routes need model-backed inference engines, which are outside this local-only build.",
-    "accept": []
-  },
-  {
-    "key": "diagram-image-plantuml",
-    "label": "Diagram Image → PlantUML",
-    "source": "Diagram Image",
-    "target": "PlantUML",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "AI-assisted routes need model-backed inference engines, which are outside this local-only build.",
-    "accept": []
-  },
-  {
-    "key": "math-image-latex",
-    "label": "Math Image → LaTeX",
-    "source": "Math Image",
-    "target": "LaTeX",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "AI-assisted routes need model-backed inference engines, which are outside this local-only build.",
-    "accept": []
-  },
-  {
-    "key": "code-image-source-code",
-    "label": "Code Image → Source Code",
-    "source": "Code Image",
-    "target": "Source Code",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "AI-assisted routes need model-backed inference engines, which are outside this local-only build.",
-    "accept": []
-  },
-  {
-    "key": "handwriting-text",
-    "label": "Handwriting → Text",
-    "source": "Handwriting",
-    "target": "Text",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "This AI route needs specialized model inference to produce high-quality results.",
-    "accept": []
-  },
-  {
-    "key": "black-white-color",
-    "label": "Black & White → Color",
-    "source": "Black & White",
-    "target": "Color",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "AI-assisted routes need model-backed inference engines, which are outside this local-only build.",
-    "accept": []
-  },
-  {
-    "key": "low-resolution-high-resolution",
-    "label": "Low Resolution → High Resolution",
-    "source": "Low Resolution",
-    "target": "High Resolution",
-    "category": "AI",
-    "status": "unavailable",
-    "note": "AI-assisted routes need model-backed inference engines, which are outside this local-only build.",
-    "accept": []
   }
 ]

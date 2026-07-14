@@ -1492,6 +1492,24 @@ def get_handler(source: str, target: str) -> tuple[Converter | None, str]:
     return None, "unavailable"
 
 
+ALLOWED_SOURCE_FORMATS = (
+    "PDF",
+    "DOCX",
+    "TXT",
+    "JPG",
+    "PNG",
+    "HEIC",
+    "MP4",
+    "MP3",
+    "MOV",
+    "XLSX",
+    "CSV",
+    "PPTX",
+    "ZIP",
+    "EPUB",
+)
+
+
 def build_catalog() -> list[dict[str, object]]:
     entries: list[dict[str, object]] = []
     seen: set[str] = set()
@@ -1507,6 +1525,8 @@ def build_catalog() -> list[dict[str, object]]:
             if arrow == "↔":
                 pairs.append((target, source))
             for from_fmt, to_fmt in pairs:
+                if from_fmt not in ALLOWED_SOURCE_FORMATS:
+                    continue
                 label = f"{from_fmt} → {to_fmt}"
                 key = slugify(label)
                 if key in seen:

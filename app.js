@@ -1,5 +1,5 @@
 const state = {
-  activeSource: "All",
+  activeSource: "PDF",
   apiAvailable: false,
   loadError: "",
   conversions: [],
@@ -114,7 +114,23 @@ const FALLBACK_COLORS = [
   "#7c6cf6",
 ];
 
-const ALL_SOURCES = "All";
+const ALLOWED_SOURCES = [
+  "PDF",
+  "DOCX",
+  "TXT",
+  "JPG",
+  "PNG",
+  "HEIC",
+  "MP4",
+  "MP3",
+  "MOV",
+  "XLSX",
+  "CSV",
+  "PPTX",
+  "ZIP",
+  "EPUB",
+];
+
 const conversionGrid = document.getElementById("conversion-grid");
 const fileInput = document.getElementById("file-input");
 const searchInput = document.getElementById("search-input");
@@ -136,13 +152,13 @@ async function loadCatalog() {
   try {
     const data = await fetchCatalog("api/conversions");
     state.apiAvailable = true;
-    state.conversions = data.conversions || [];
+    state.conversions = filterAllowedConversions(data.conversions || []);
     state.loadError = "";
   } catch (error) {
     try {
       const data = await fetchCatalog("catalog.json");
       state.apiAvailable = false;
-      state.conversions = Array.isArray(data) ? data : data.conversions || [];
+      state.conversions = filterAllowedConversions(Array.isArray(data) ? data : data.conversions || []);
       state.loadError = "";
     } catch {
       state.apiAvailable = false;
@@ -161,6 +177,10 @@ async function fetchCatalog(path) {
   return response.json();
 }
 
+function filterAllowedConversions(entries) {
+  return entries.filter((entry) => ALLOWED_SOURCES.includes(entry.source));
+}
+
 function bindEvents() {
   searchInput.addEventListener("input", (event) => {
     state.query = normalizeSearchText(event.target.value);
@@ -175,7 +195,7 @@ function bindEvents() {
         return;
       }
 
-      state.activeSource = button.dataset.sourceFilter || ALL_SOURCES;
+      state.activeSource = button.dataset.sourceFilter || ALLOWED_SOURCES[0];
       syncActiveSelection();
       render();
     });
@@ -200,7 +220,7 @@ function getVisibleConversions() {
   return state.conversions.filter((entry) => {
     const haystack = normalizeSearchText(`${entry.label} ${entry.category} ${entry.note} ${entry.status}`);
     const matchesQuery = !state.query || haystack.includes(state.query);
-    const matchesSource = state.activeSource === ALL_SOURCES || entry.source === state.activeSource;
+    const matchesSource = entry.source === state.activeSource;
     return matchesQuery && matchesSource;
   });
 }
@@ -216,23 +236,10 @@ function getSourceGroups() {
     counts.set(entry.source, (counts.get(entry.source) || 0) + 1);
   });
 
-  const sources = [...counts.keys()].sort((left, right) => {
-    if (left === "PDF") {
-      return -1;
-    }
-    if (right === "PDF") {
-      return 1;
-    }
-    return left.localeCompare(right);
-  });
-
-  return [
-    { count: state.conversions.length, source: ALL_SOURCES },
-    ...sources.map((source) => ({
-      count: counts.get(source) || 0,
-      source,
-    })),
-  ];
+  return ALLOWED_SOURCES.map((source) => ({
+    count: counts.get(source) || 0,
+    source,
+  }));
 }
 
 function clearSelectedFile() {
@@ -372,16 +379,6 @@ function renderSourceTabs() {
 }
 
 function getSourceTabTheme(source) {
-  if (source === ALL_SOURCES) {
-    return {
-      accent: "#12202f",
-      border: "rgba(18, 32, 47, 0.16)",
-      ink: "#ffffff",
-      shadow: "0 12px 24px rgba(18, 32, 47, 0.18)",
-      tint: "rgba(18, 32, 47, 0.06)",
-    };
-  }
-
   const theme = getSourceTheme(source);
   const { r, g, b } = theme.rgb;
 
